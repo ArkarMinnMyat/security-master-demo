@@ -23,9 +23,13 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login").permitAll());
         http.authorizeHttpRequests(c -> {
             c.requestMatchers("/bootstrap/**","/").permitAll()
+                    .requestMatchers("/department/create-department","/department/list-departments")
+                    .hasAnyRole("SUPER_ADMIN","EMPLOYEE_ADMIN","DEPARTMENT_READ")
                     .requestMatchers("/customer/list-customers")
                     .hasAnyRole("CUSTOMER_READ","SUPER_ADMIN")
                     .requestMatchers("/customer/**").hasRole("SUPER_ADMIN")
+                    .requestMatchers("/employee/**").hasAnyRole("SUPER_ADMIN","EMPLOYEE_ADMIN")
+                    .requestMatchers("/department/**").hasAnyRole("SUPER_ADMIN")
                     .anyRequest().authenticated();
         });
         http.csrf(c -> c.disable());
