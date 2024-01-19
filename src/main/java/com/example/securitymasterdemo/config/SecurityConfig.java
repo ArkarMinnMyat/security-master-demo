@@ -29,7 +29,7 @@ public class SecurityConfig {
                     .hasAnyRole("CUSTOMER_READ","SUPER_ADMIN")
                     .requestMatchers("/customer/**").hasRole("SUPER_ADMIN")
                     .requestMatchers("/employee/**").hasAnyRole("SUPER_ADMIN","EMPLOYEE_ADMIN")
-                    .requestMatchers("/department/**").hasAnyRole("SUPER_ADMIN")
+                    .requestMatchers("/department/**").hasRole("SUPER_ADMIN")
                     .anyRequest().authenticated();
         });
         http.csrf(c -> c.disable());
