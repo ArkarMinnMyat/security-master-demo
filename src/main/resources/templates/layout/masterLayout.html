@@ -18,7 +18,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <div class="collapse navbar-collapse" id="myNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
+                    <a th:href="@{/}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a th:href="@{customer/list-customers}" class="nav-link">Customer</a>
@@ -31,11 +31,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 </li>
             </ul>
             <div sec:authorize="!isAuthenticated()">
-                <a th:href="@{/login}" class="btn btn-link">Login</a>
+                <a th:href="@{/login}" class="btn btn-secondary">Login</a>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <a th:href="@{/account}" class="btn btn-link me-3">Account</a>
-                <a href="javascript: document.logoutForm.submit()">Logout</a>
+                <a th:href="@{/account}" class="btn btn-secondary me-3">Account</a>
+                <a href="javascript: document.logoutForm.submit()" class="btn btn-secondary">Logout</a>
                 <form name="logoutForm" th:action="@{/logout}" th:hidden="true" method="post">
                     <input type="submit" value="Submit" hidden>
                 </form>
